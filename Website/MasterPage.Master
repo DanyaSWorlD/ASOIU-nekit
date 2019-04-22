@@ -1,0 +1,100 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterPage.master.cs" Inherits="Website.MasterPage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        table {
+            width: 100%;
+            border: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #header {
+            color: white;
+        }
+
+        #Label1 {
+            color: white;
+        }
+
+        .content {
+            margin: 10px;
+        }
+
+        #logo {
+            height: 60px;
+            background: transparent;
+        }
+
+        .header {
+            background-color: darkblue;
+            height: 40px !important;
+            color: white;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .width100 {
+            width: 150px;
+        }
+
+        .auto-style1 {
+            vertical-align: top;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <table>
+            <tr>
+                <td class="header width100">
+                    <img id="logo" alt="Логотип" src="images/logo.png" /></td>
+                <td class="header center">
+                    <asp:Label ID="Label1" runat="server" Font-Size="XX-Large" Text="Аренда спецтехники"></asp:Label>
+                </td>
+                <td class="header center" colspan="1"><a id="header" runat="server"></a>
+                    <br />
+                    <a id="pocket" runat="server"></a></td>
+            </tr>
+            <tr>
+                <td class="auto-style1">
+                    <table style="vertical-align: top; width: 200px; vertical-align: top;">
+                        <tr>
+                            <td><a href="/">Главная</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="/news.aspx">Новости</a></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:LinkButton ID="Link1" runat="server" Text="Личный кабинет" OnClick="Link1_Click" Visible="False"></asp:LinkButton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:LinkButton ID="Link2" runat="server" Text="Администрирование" OnClick="Link2_Click" Visible="False"></asp:LinkButton>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <td colspan="2" class="auto-style1">
+                        <div class="content">
+                            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server" />
+                        </div>
+                    </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
