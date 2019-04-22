@@ -12,22 +12,21 @@ namespace Website
     using System;
     using System.Collections.Generic;
     
-    public partial class Models
+    public partial class Режиссеры
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Models()
+        public Режиссеры()
         {
-            this.Pocket = new HashSet<Pocket>();
+            this.Фильмы = new HashSet<Фильмы>();
         }
     
         public int Id { get; set; }
-        public int Type { get; set; }
-        public string Manufacturer { get; set; }
-        public string Model { get; set; }
-        public int Price { get; set; }
+        public string Фамилия { get; set; }
+        public string Имя { get; set; }
+        public string Страна { get; set; }
+        public string Информация { get; set; }
     
-        public virtual ModelTypes ModelTypes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pocket> Pocket { get; set; }
+        public virtual ICollection<Фильмы> Фильмы { get; set; }
     }
 }

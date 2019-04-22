@@ -32,9 +32,8 @@ namespace Website
             using (var context = new MainEntities())
                 return context.Pocket
                     .Where(o => o.UserId.Equals(user.Id))
-                    .Include(o => o.Models)
+                    .Include(o => o.Фильмы)
                     .Include(o => o.Users)
-                    .Include(o => o.Models.ModelTypes)
                     .ToList();
         }
 
@@ -56,8 +55,8 @@ namespace Website
                 var myPocket = context.Pocket.Where(o => o.UserId == user.Id).ToList();
                 var myPocketItem = myPocket[e.RowIndex];
 
-                if (myPocketItem.Count > 1)
-                    context.Pocket.First(o => o.Id == myPocketItem.Id).Count--;
+                if (myPocketItem.Количество > 1)
+                    context.Pocket.First(o => o.Id == myPocketItem.Id).Количество--;
                 else
                     context.Pocket.Remove(myPocketItem);
 

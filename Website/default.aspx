@@ -50,11 +50,14 @@
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:ButtonField CommandName="add" Text="Добавить в корзину" />
-            <asp:BoundField DataField="ModelTypes.Type" HeaderText="Тип"></asp:BoundField>
-            <asp:BoundField DataField="Manufacturer" HeaderText="Производитель" SortExpression="Manufacturer" />
-            <asp:BoundField DataField="Model" HeaderText="Модель" SortExpression="Model" />
-            <asp:BoundField DataField="Price" HeaderText="Цена/сутки" SortExpression="Price" />
+            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False"></asp:BoundField>
+            <asp:BoundField DataField="Название" HeaderText="Название" SortExpression="Название" />
+            <asp:BoundField DataField="Сюжет" HeaderText="Сюжет" SortExpression="Сюжет" />
+            <asp:BoundField DataField="Дата_выхода" HeaderText="Дата_выхода" SortExpression="Дата_выхода" />
+            <asp:BoundField DataField="Страна" HeaderText="Страна" SortExpression="Страна" />
+            <asp:BoundField DataField="Количество_серий" HeaderText="Количество_серий" SortExpression="Количество_серий" />
+            <asp:BoundField DataField="Режиссер" HeaderText="Режиссер" SortExpression="Режиссер" />
+            <asp:BoundField DataField="Студия" HeaderText="Студия" SortExpression="Студия" />
         </Columns>
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
         <RowStyle BackColor="#EFF3FB" CssClass="style1" />
@@ -64,5 +67,5 @@
         <SortedDescendingCellStyle BackColor="#E9EBEF" />
         <SortedDescendingHeaderStyle BackColor="#4870BE" />
     </asp:GridView>
-    <asp:ObjectDataSource ID="MainSource" runat="server" SelectMethod="GetModels" TypeName="Website.Db"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="MainSource" runat="server" SelectMethod="Фильмы" TypeName="Website._default"></asp:ObjectDataSource>
 </asp:Content>

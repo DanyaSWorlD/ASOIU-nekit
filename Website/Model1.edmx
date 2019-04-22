@@ -4,78 +4,15 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище MainModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Clients">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIO" Type="varchar(max)" Nullable="false" />
-          <Property Name="Passport" Type="varchar(max)" Nullable="false" />
-          <Property Name="More" Type="varchar(max)" />
-          <Property Name="Adress" Type="varchar(max)" Nullable="false" />
-          <Property Name="Number" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Contracts">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CreationDate" Type="date" Nullable="false" />
-          <Property Name="ExpireDate" Type="date" Nullable="false" />
-          <Property Name="RentTime" Type="datetime" Nullable="false" />
-          <Property Name="Costs" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Defects">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Part" Type="varchar(max)" Nullable="false" />
-          <Property Name="Value" Type="varchar(max)" Nullable="false" />
-          <Property Name="Comment" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Models">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Type" Type="int" Nullable="false" />
-          <Property Name="Manufacturer" Type="varchar(max)" Nullable="false" />
-          <Property Name="Model" Type="varchar(max)" Nullable="false" />
-          <Property Name="Price" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ModelTypes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Type" Type="varchar(max)" Nullable="false" />
-        </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Title" Type="varchar(max)" Nullable="false" />
-          <Property Name="Text" Type="varchar(max)" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="Хранилище MainModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Pocket">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ModelId" Type="int" Nullable="false" />
-          <Property Name="Count" Type="int" Nullable="false" />
+          <Property Name="Фильм" Type="int" Nullable="false" />
+          <Property Name="Количество" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Rides">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StartTime" Type="datetime" Nullable="false" />
-          <Property Name="Status" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Rigths">
           <Key>
@@ -94,30 +31,74 @@
           <Property Name="Rigths" Type="int" Nullable="false" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Models_ModelTypes">
-          <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="1" />
-          <End Role="Models" Type="Self.Models" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ModelTypes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Models">
-              <PropertyRef Name="Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pocket_Models">
-          <End Role="Models" Type="Self.Models" Multiplicity="1" />
-          <End Role="Pocket" Type="Self.Pocket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Models">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Pocket">
-              <PropertyRef Name="ModelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Актеры">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar(max)" Nullable="false" />
+          <Property Name="Имя" Type="varchar(max)" Nullable="false" />
+          <Property Name="Страна" Type="varchar(max)" Nullable="false" />
+          <Property Name="Год" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Актеры в фильме">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Актер" Type="int" Nullable="false" />
+          <Property Name="Фильм" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Персонажи">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar(max)" Nullable="false" />
+          <Property Name="Имя" Type="varchar(max)" Nullable="false" />
+          <Property Name="Злодей" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Персонажи в фильме">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Персонаж" Type="int" Nullable="false" />
+          <Property Name="Фильм" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Режиссеры">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Фамилия" Type="varchar(max)" Nullable="false" />
+          <Property Name="Имя" Type="varchar(max)" Nullable="false" />
+          <Property Name="Страна" Type="varchar(max)" Nullable="false" />
+          <Property Name="Информация" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Студии">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="varchar(max)" Nullable="false" />
+          <Property Name="Страна" Type="varchar(max)" Nullable="false" />
+          <Property Name="Адрес" Type="varchar(max)" Nullable="false" />
+          <Property Name="Телефон" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Фильмы">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название" Type="varchar(max)" Nullable="false" />
+          <Property Name="Сюжет" Type="varchar(max)" Nullable="false" />
+          <Property Name="Дата выхода" Type="date" Nullable="false" />
+          <Property Name="Страна" Type="varchar(max)" Nullable="false" />
+          <Property Name="Количество серий" Type="int" Nullable="false" />
+          <Property Name="Режиссер" Type="int" />
+          <Property Name="Студия" Type="int" />
+        </EntityType>
         <Association Name="FK_Pocket_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="Pocket" Type="Self.Pocket" Multiplicity="*" />
@@ -127,6 +108,18 @@
             </Principal>
             <Dependent Role="Pocket">
               <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pocket_Фильмы">
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="1" />
+          <End Role="Pocket" Type="Self.Pocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильмы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pocket">
+              <PropertyRef Name="Фильм" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,116 +135,130 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Актеры в фильме_Актеры">
+          <End Role="Актеры" Type="Self.Актеры" Multiplicity="1" />
+          <End Role="Актеры в фильме" Type="Self.Актеры в фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Актеры">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Актеры в фильме">
+              <PropertyRef Name="Актер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Актеры в фильме_Фильмы">
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="1" />
+          <End Role="Актеры в фильме" Type="Self.Актеры в фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильмы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Актеры в фильме">
+              <PropertyRef Name="Фильм" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Персонажи в фильме_Персонажи">
+          <End Role="Персонажи" Type="Self.Персонажи" Multiplicity="1" />
+          <End Role="Персонажи в фильме" Type="Self.Персонажи в фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Персонажи">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Персонажи в фильме">
+              <PropertyRef Name="Персонаж" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Персонажи в фильме_Фильмы">
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="1" />
+          <End Role="Персонажи в фильме" Type="Self.Персонажи в фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильмы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Персонажи в фильме">
+              <PropertyRef Name="Фильм" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фильмы_Режиссеры">
+          <End Role="Режиссеры" Type="Self.Режиссеры" Multiplicity="0..1" />
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Режиссеры">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Фильмы">
+              <PropertyRef Name="Режиссер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фильмы_Студии">
+          <End Role="Студии" Type="Self.Студии" Multiplicity="0..1" />
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Студии">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Фильмы">
+              <PropertyRef Name="Студия" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище MainModelContainer">
-          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Contracts" EntityType="Self.Contracts" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Defects" EntityType="Self.Defects" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Models" EntityType="Self.Models" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ModelTypes" EntityType="Self.ModelTypes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pocket" EntityType="Self.Pocket" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Rides" EntityType="Self.Rides" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Rigths" EntityType="Self.Rigths" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Models_ModelTypes" Association="Self.FK_Models_ModelTypes">
-            <End Role="ModelTypes" EntitySet="ModelTypes" />
-            <End Role="Models" EntitySet="Models" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pocket_Models" Association="Self.FK_Pocket_Models">
-            <End Role="Models" EntitySet="Models" />
-            <End Role="Pocket" EntitySet="Pocket" />
-          </AssociationSet>
+          <EntitySet Name="Актеры" EntityType="Self.Актеры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Актеры в фильме" EntityType="Self.Актеры в фильме" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Персонажи" EntityType="Self.Персонажи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Персонажи в фильме" EntityType="Self.Персонажи в фильме" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Режиссеры" EntityType="Self.Режиссеры" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Студии" EntityType="Self.Студии" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Фильмы" EntityType="Self.Фильмы" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Pocket_Users" Association="Self.FK_Pocket_Users">
             <End Role="Users" EntitySet="Users" />
+            <End Role="Pocket" EntitySet="Pocket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pocket_Фильмы" Association="Self.FK_Pocket_Фильмы">
+            <End Role="Фильмы" EntitySet="Фильмы" />
             <End Role="Pocket" EntitySet="Pocket" />
           </AssociationSet>
           <AssociationSet Name="FK_Users_Rigths" Association="Self.FK_Users_Rigths">
             <End Role="Rigths" EntitySet="Rigths" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Актеры в фильме_Актеры" Association="Self.FK_Актеры в фильме_Актеры">
+            <End Role="Актеры" EntitySet="Актеры" />
+            <End Role="Актеры в фильме" EntitySet="Актеры в фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Актеры в фильме_Фильмы" Association="Self.FK_Актеры в фильме_Фильмы">
+            <End Role="Фильмы" EntitySet="Фильмы" />
+            <End Role="Актеры в фильме" EntitySet="Актеры в фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Персонажи в фильме_Персонажи" Association="Self.FK_Персонажи в фильме_Персонажи">
+            <End Role="Персонажи" EntitySet="Персонажи" />
+            <End Role="Персонажи в фильме" EntitySet="Персонажи в фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Персонажи в фильме_Фильмы" Association="Self.FK_Персонажи в фильме_Фильмы">
+            <End Role="Фильмы" EntitySet="Фильмы" />
+            <End Role="Персонажи в фильме" EntitySet="Персонажи в фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фильмы_Режиссеры" Association="Self.FK_Фильмы_Режиссеры">
+            <End Role="Режиссеры" EntitySet="Режиссеры" />
+            <End Role="Фильмы" EntitySet="Фильмы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фильмы_Студии" Association="Self.FK_Фильмы_Студии">
+            <End Role="Студии" EntitySet="Студии" />
+            <End Role="Фильмы" EntitySet="Фильмы" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MainModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Clients">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Passport" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="More" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Adress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Contracts">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ExpireDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="RentTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Costs" Type="Int32" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Defects">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Part" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Models">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Model" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Price" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ModelTypes" Relationship="Self.FK_Models_ModelTypes" FromRole="Models" ToRole="ModelTypes" />
-          <NavigationProperty Name="Pocket" Relationship="Self.FK_Pocket_Models" FromRole="Models" ToRole="Pocket" />
-        </EntityType>
-        <EntityType Name="ModelTypes">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Type" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Models" Relationship="Self.FK_Models_ModelTypes" FromRole="ModelTypes" ToRole="Models" />
-        </EntityType>
-        <EntityType Name="News">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Pocket">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ModelId" Type="Int32" Nullable="false" />
-          <Property Name="Count" Type="Int32" Nullable="false" />
-          <Property Name="UserId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Models" Relationship="Self.FK_Pocket_Models" FromRole="Pocket" ToRole="Models" />
-          <NavigationProperty Name="Users" Relationship="Self.FK_Pocket_Users" FromRole="Pocket" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Rides">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Status" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-        </EntityType>
         <EntityType Name="Rigths">
           <Key>
             <PropertyRef Name="id" />
@@ -269,45 +276,90 @@
           <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Rigths" Type="Int32" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Pocket" Relationship="Self.FK_Pocket_Users" FromRole="Users" ToRole="Pocket" />
           <NavigationProperty Name="Rigths1" Relationship="Self.FK_Users_Rigths" FromRole="Users" ToRole="Rigths" />
+          <NavigationProperty Name="Pocket" Relationship="MainModel.FK_Pocket_Users" FromRole="Users" ToRole="Pocket" />
         </EntityType>
-        <Association Name="FK_Models_ModelTypes">
-          <End Role="ModelTypes" Type="Self.ModelTypes" Multiplicity="1" />
-          <End Role="Models" Type="Self.Models" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ModelTypes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Models">
-              <PropertyRef Name="Type" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pocket_Models">
-          <End Role="Models" Type="Self.Models" Multiplicity="1" />
-          <End Role="Pocket" Type="Self.Pocket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Models">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Pocket">
-              <PropertyRef Name="ModelId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pocket_Users">
-          <End Role="Users" Type="Self.Users" Multiplicity="1" />
-          <End Role="Pocket" Type="Self.Pocket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Pocket">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityType Name="Актеры">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Страна" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Год" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Актеры_в_фильме" Relationship="Self.FK_Актеры_в_фильме_Актеры" FromRole="Актеры" ToRole="Актеры_в_фильме" />
+        </EntityType>
+        <EntityType Name="Актеры_в_фильме">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Актер" Type="Int32" Nullable="false" />
+          <Property Name="Фильм" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Актеры" Relationship="Self.FK_Актеры_в_фильме_Актеры" FromRole="Актеры_в_фильме" ToRole="Актеры" />
+          <NavigationProperty Name="Фильмы" Relationship="Self.FK_Актеры_в_фильме_Фильмы" FromRole="Актеры_в_фильме" ToRole="Фильмы" />
+        </EntityType>
+        <EntityType Name="Персонажи">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Злодей" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Персонажи_в_фильме" Relationship="Self.FK_Персонажи_в_фильме_Персонажи" FromRole="Персонажи" ToRole="Персонажи_в_фильме" />
+        </EntityType>
+        <EntityType Name="Персонажи_в_фильме">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Персонаж" Type="Int32" Nullable="false" />
+          <Property Name="Фильм" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Персонажи" Relationship="Self.FK_Персонажи_в_фильме_Персонажи" FromRole="Персонажи_в_фильме" ToRole="Персонажи" />
+          <NavigationProperty Name="Фильмы" Relationship="Self.FK_Персонажи_в_фильме_Фильмы" FromRole="Персонажи_в_фильме" ToRole="Фильмы" />
+        </EntityType>
+        <EntityType Name="Режиссеры">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фамилия" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Страна" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Информация" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Фильмы" Relationship="Self.FK_Фильмы_Режиссеры" FromRole="Режиссеры" ToRole="Фильмы" />
+        </EntityType>
+        <EntityType Name="Студии">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Страна" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Адрес" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Фильмы" Relationship="Self.FK_Фильмы_Студии" FromRole="Студии" ToRole="Фильмы" />
+        </EntityType>
+        <EntityType Name="Фильмы">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Сюжет" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Дата_выхода" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Страна" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Количество_серий" Type="Int32" Nullable="false" />
+          <Property Name="Режиссер" Type="Int32" />
+          <Property Name="Студия" Type="Int32" />
+          <NavigationProperty Name="Актеры_в_фильме" Relationship="Self.FK_Актеры_в_фильме_Фильмы" FromRole="Фильмы" ToRole="Актеры_в_фильме" />
+          <NavigationProperty Name="Персонажи_в_фильме" Relationship="Self.FK_Персонажи_в_фильме_Фильмы" FromRole="Фильмы" ToRole="Персонажи_в_фильме" />
+          <NavigationProperty Name="Режиссеры" Relationship="Self.FK_Фильмы_Режиссеры" FromRole="Фильмы" ToRole="Режиссеры" />
+          <NavigationProperty Name="Студии" Relationship="Self.FK_Фильмы_Студии" FromRole="Фильмы" ToRole="Студии" />
+          <NavigationProperty Name="Pocket" Relationship="MainModel.FK_Pocket_Фильмы" FromRole="Фильмы" ToRole="Pocket" />
+        </EntityType>
         <Association Name="FK_Users_Rigths">
           <End Role="Rigths" Type="Self.Rigths" Multiplicity="1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
@@ -320,120 +372,167 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Актеры_в_фильме_Актеры">
+          <End Role="Актеры" Type="Self.Актеры" Multiplicity="1" />
+          <End Role="Актеры_в_фильме" Type="Self.Актеры_в_фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Актеры">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Актеры_в_фильме">
+              <PropertyRef Name="Актер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Актеры_в_фильме_Фильмы">
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="1" />
+          <End Role="Актеры_в_фильме" Type="Self.Актеры_в_фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильмы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Актеры_в_фильме">
+              <PropertyRef Name="Фильм" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Персонажи_в_фильме_Персонажи">
+          <End Role="Персонажи" Type="Self.Персонажи" Multiplicity="1" />
+          <End Role="Персонажи_в_фильме" Type="Self.Персонажи_в_фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Персонажи">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Персонажи_в_фильме">
+              <PropertyRef Name="Персонаж" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Персонажи_в_фильме_Фильмы">
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="1" />
+          <End Role="Персонажи_в_фильме" Type="Self.Персонажи_в_фильме" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильмы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Персонажи_в_фильме">
+              <PropertyRef Name="Фильм" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фильмы_Режиссеры">
+          <End Role="Режиссеры" Type="Self.Режиссеры" Multiplicity="0..1" />
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Режиссеры">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Фильмы">
+              <PropertyRef Name="Режиссер" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Фильмы_Студии">
+          <End Role="Студии" Type="Self.Студии" Multiplicity="0..1" />
+          <End Role="Фильмы" Type="Self.Фильмы" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Студии">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Фильмы">
+              <PropertyRef Name="Студия" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="MainEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Clients" EntityType="Self.Clients" />
-          <EntitySet Name="Contracts" EntityType="Self.Contracts" />
-          <EntitySet Name="Defects" EntityType="Self.Defects" />
-          <EntitySet Name="Models" EntityType="Self.Models" />
-          <EntitySet Name="ModelTypes" EntityType="Self.ModelTypes" />
-          <EntitySet Name="News" EntityType="Self.News" />
-          <EntitySet Name="Pocket" EntityType="Self.Pocket" />
-          <EntitySet Name="Rides" EntityType="Self.Rides" />
           <EntitySet Name="Rigths" EntityType="Self.Rigths" />
           <EntitySet Name="Users" EntityType="Self.Users" />
-          <AssociationSet Name="FK_Models_ModelTypes" Association="Self.FK_Models_ModelTypes">
-            <End Role="ModelTypes" EntitySet="ModelTypes" />
-            <End Role="Models" EntitySet="Models" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pocket_Models" Association="Self.FK_Pocket_Models">
-            <End Role="Models" EntitySet="Models" />
-            <End Role="Pocket" EntitySet="Pocket" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pocket_Users" Association="Self.FK_Pocket_Users">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Pocket" EntitySet="Pocket" />
-          </AssociationSet>
+          <EntitySet Name="Актеры" EntityType="Self.Актеры" />
+          <EntitySet Name="Актеры_в_фильме" EntityType="Self.Актеры_в_фильме" />
+          <EntitySet Name="Персонажи" EntityType="Self.Персонажи" />
+          <EntitySet Name="Персонажи_в_фильме" EntityType="Self.Персонажи_в_фильме" />
+          <EntitySet Name="Режиссеры" EntityType="Self.Режиссеры" />
+          <EntitySet Name="Студии" EntityType="Self.Студии" />
+          <EntitySet Name="Фильмы" EntityType="Self.Фильмы" />
           <AssociationSet Name="FK_Users_Rigths" Association="Self.FK_Users_Rigths">
             <End Role="Rigths" EntitySet="Rigths" />
             <End Role="Users" EntitySet="Users" />
           </AssociationSet>
+          <AssociationSet Name="FK_Актеры_в_фильме_Актеры" Association="Self.FK_Актеры_в_фильме_Актеры">
+            <End Role="Актеры" EntitySet="Актеры" />
+            <End Role="Актеры_в_фильме" EntitySet="Актеры_в_фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Актеры_в_фильме_Фильмы" Association="Self.FK_Актеры_в_фильме_Фильмы">
+            <End Role="Фильмы" EntitySet="Фильмы" />
+            <End Role="Актеры_в_фильме" EntitySet="Актеры_в_фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Персонажи_в_фильме_Персонажи" Association="Self.FK_Персонажи_в_фильме_Персонажи">
+            <End Role="Персонажи" EntitySet="Персонажи" />
+            <End Role="Персонажи_в_фильме" EntitySet="Персонажи_в_фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Персонажи_в_фильме_Фильмы" Association="Self.FK_Персонажи_в_фильме_Фильмы">
+            <End Role="Фильмы" EntitySet="Фильмы" />
+            <End Role="Персонажи_в_фильме" EntitySet="Персонажи_в_фильме" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фильмы_Режиссеры" Association="Self.FK_Фильмы_Режиссеры">
+            <End Role="Режиссеры" EntitySet="Режиссеры" />
+            <End Role="Фильмы" EntitySet="Фильмы" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Фильмы_Студии" Association="Self.FK_Фильмы_Студии">
+            <End Role="Студии" EntitySet="Студии" />
+            <End Role="Фильмы" EntitySet="Фильмы" />
+          </AssociationSet>
+          <EntitySet Name="Pocket" EntityType="MainModel.Pocket" />
+          <AssociationSet Name="FK_Pocket_Users" Association="MainModel.FK_Pocket_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Pocket" EntitySet="Pocket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pocket_Фильмы" Association="MainModel.FK_Pocket_Фильмы">
+            <End Role="Фильмы" EntitySet="Фильмы" />
+            <End Role="Pocket" EntitySet="Pocket" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Pocket">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Фильм" Type="Int32" Nullable="false" />
+          <Property Name="Количество" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="MainModel.FK_Pocket_Users" FromRole="Pocket" ToRole="Users" />
+          <NavigationProperty Name="Фильмы" Relationship="MainModel.FK_Pocket_Фильмы" FromRole="Pocket" ToRole="Фильмы" />
+        </EntityType>
+        <Association Name="FK_Pocket_Users">
+          <End Type="MainModel.Users" Role="Users" Multiplicity="1" />
+          <End Type="MainModel.Pocket" Role="Pocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pocket">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pocket_Фильмы">
+          <End Type="MainModel.Фильмы" Role="Фильмы" Multiplicity="1" />
+          <End Type="MainModel.Pocket" Role="Pocket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Фильмы">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Pocket">
+              <PropertyRef Name="Фильм" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище MainModelContainer" CdmEntityContainer="MainEntities">
-          <EntitySetMapping Name="Clients">
-            <EntityTypeMapping TypeName="MainModel.Clients">
-              <MappingFragment StoreEntitySet="Clients">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FIO" ColumnName="FIO" />
-                <ScalarProperty Name="Passport" ColumnName="Passport" />
-                <ScalarProperty Name="More" ColumnName="More" />
-                <ScalarProperty Name="Adress" ColumnName="Adress" />
-                <ScalarProperty Name="Number" ColumnName="Number" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Contracts">
-            <EntityTypeMapping TypeName="MainModel.Contracts">
-              <MappingFragment StoreEntitySet="Contracts">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="ExpireDate" ColumnName="ExpireDate" />
-                <ScalarProperty Name="RentTime" ColumnName="RentTime" />
-                <ScalarProperty Name="Costs" ColumnName="Costs" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Defects">
-            <EntityTypeMapping TypeName="MainModel.Defects">
-              <MappingFragment StoreEntitySet="Defects">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Part" ColumnName="Part" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Models">
-            <EntityTypeMapping TypeName="MainModel.Models">
-              <MappingFragment StoreEntitySet="Models">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ModelTypes">
-            <EntityTypeMapping TypeName="MainModel.ModelTypes">
-              <MappingFragment StoreEntitySet="ModelTypes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="News">
-            <EntityTypeMapping TypeName="MainModel.News">
-              <MappingFragment StoreEntitySet="News">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Pocket">
-            <EntityTypeMapping TypeName="MainModel.Pocket">
-              <MappingFragment StoreEntitySet="Pocket">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ModelId" ColumnName="ModelId" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Rides">
-            <EntityTypeMapping TypeName="MainModel.Rides">
-              <MappingFragment StoreEntitySet="Rides">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Rigths">
             <EntityTypeMapping TypeName="MainModel.Rigths">
               <MappingFragment StoreEntitySet="Rigths">
@@ -450,6 +549,91 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Rigths" ColumnName="Rigths" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Актеры">
+            <EntityTypeMapping TypeName="MainModel.Актеры">
+              <MappingFragment StoreEntitySet="Актеры">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Страна" ColumnName="Страна" />
+                <ScalarProperty Name="Год" ColumnName="Год" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Актеры_в_фильме">
+            <EntityTypeMapping TypeName="MainModel.Актеры_в_фильме">
+              <MappingFragment StoreEntitySet="Актеры в фильме">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Актер" ColumnName="Актер" />
+                <ScalarProperty Name="Фильм" ColumnName="Фильм" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Персонажи">
+            <EntityTypeMapping TypeName="MainModel.Персонажи">
+              <MappingFragment StoreEntitySet="Персонажи">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Злодей" ColumnName="Злодей" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Персонажи_в_фильме">
+            <EntityTypeMapping TypeName="MainModel.Персонажи_в_фильме">
+              <MappingFragment StoreEntitySet="Персонажи в фильме">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Персонаж" ColumnName="Персонаж" />
+                <ScalarProperty Name="Фильм" ColumnName="Фильм" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Режиссеры">
+            <EntityTypeMapping TypeName="MainModel.Режиссеры">
+              <MappingFragment StoreEntitySet="Режиссеры">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Страна" ColumnName="Страна" />
+                <ScalarProperty Name="Информация" ColumnName="Информация" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Студии">
+            <EntityTypeMapping TypeName="MainModel.Студии">
+              <MappingFragment StoreEntitySet="Студии">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Страна" ColumnName="Страна" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Фильмы">
+            <EntityTypeMapping TypeName="MainModel.Фильмы">
+              <MappingFragment StoreEntitySet="Фильмы">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Сюжет" ColumnName="Сюжет" />
+                <ScalarProperty Name="Дата_выхода" ColumnName="Дата выхода" />
+                <ScalarProperty Name="Страна" ColumnName="Страна" />
+                <ScalarProperty Name="Количество_серий" ColumnName="Количество серий" />
+                <ScalarProperty Name="Режиссер" ColumnName="Режиссер" />
+                <ScalarProperty Name="Студия" ColumnName="Студия" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pocket">
+            <EntityTypeMapping TypeName="MainModel.Pocket">
+              <MappingFragment StoreEntitySet="Pocket">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Количество" ColumnName="Количество" />
+                <ScalarProperty Name="Фильм" ColumnName="Фильм" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

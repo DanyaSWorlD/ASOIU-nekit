@@ -72,12 +72,13 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AddContract.aspx" />
-    <Content Include="AddDefect.aspx" />
-    <Content Include="AddModel.aspx" />
-    <Content Include="AddRide.aspx" />
+    <Content Include="AddHero.aspx" />
+    <Content Include="AddActor.aspx" />
+    <Content Include="AddStudio.aspx" />
+    <Content Include="AddRegisser.aspx" />
     <Content Include="admin.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="lk.aspx" />
     <Content Include="login.aspx" />
@@ -97,33 +98,33 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddContract.aspx.cs">
-      <DependentUpon>AddContract.aspx</DependentUpon>
+    <Compile Include="AddHero.aspx.cs">
+      <DependentUpon>AddHero.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddContract.aspx.designer.cs">
-      <DependentUpon>AddContract.aspx</DependentUpon>
+    <Compile Include="AddHero.aspx.designer.cs">
+      <DependentUpon>AddHero.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddDefect.aspx.cs">
-      <DependentUpon>AddDefect.aspx</DependentUpon>
+    <Compile Include="AddActor.aspx.cs">
+      <DependentUpon>AddActor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddDefect.aspx.designer.cs">
-      <DependentUpon>AddDefect.aspx</DependentUpon>
+    <Compile Include="AddActor.aspx.designer.cs">
+      <DependentUpon>AddActor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddModel.aspx.cs">
-      <DependentUpon>AddModel.aspx</DependentUpon>
+    <Compile Include="AddStudio.aspx.cs">
+      <DependentUpon>AddStudio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddModel.aspx.designer.cs">
-      <DependentUpon>AddModel.aspx</DependentUpon>
+    <Compile Include="AddStudio.aspx.designer.cs">
+      <DependentUpon>AddStudio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="AddRide.aspx.cs">
-      <DependentUpon>AddRide.aspx</DependentUpon>
+    <Compile Include="AddRegisser.aspx.cs">
+      <DependentUpon>AddRegisser.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="AddRide.aspx.designer.cs">
-      <DependentUpon>AddRide.aspx</DependentUpon>
+    <Compile Include="AddRegisser.aspx.designer.cs">
+      <DependentUpon>AddRegisser.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin.aspx.cs">
       <DependentUpon>admin.aspx</DependentUpon>
@@ -132,21 +133,12 @@
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Clients.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Contracts.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Defects.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="lk.aspx.cs">
       <DependentUpon>lk.aspx</DependentUpon>
@@ -184,21 +176,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ModelTypes.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="news.aspx.cs">
       <DependentUpon>news.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="news.aspx.designer.cs">
       <DependentUpon>news.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="News.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="pocket.aspx.cs">
       <DependentUpon>pocket.aspx</DependentUpon>
@@ -218,13 +201,31 @@
     <Compile Include="register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Rides.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Rigths.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Users.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Актеры.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Актеры_в_фильме.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Персонажи.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Персонажи_в_фильме.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Режиссеры.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Студии.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Фильмы.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
   </ItemGroup>

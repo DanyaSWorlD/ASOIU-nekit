@@ -12,11 +12,13 @@ namespace Website
     using System;
     using System.Collections.Generic;
     
-    public partial class Defects
+    public partial class Персонажи_в_фильме
     {
         public int Id { get; set; }
-        public string Part { get; set; }
-        public string Value { get; set; }
-        public string Comment { get; set; }
+        public int Персонаж { get; set; }
+        public int Фильм { get; set; }
+    
+        public virtual Персонажи Персонажи { get; set; }
+        public virtual Фильмы Фильмы { get; set; }
     }
 }

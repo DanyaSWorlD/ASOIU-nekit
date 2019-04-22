@@ -12,13 +12,13 @@ namespace Website
     using System;
     using System.Collections.Generic;
     
-    public partial class Clients
+    public partial class Актеры_в_фильме
     {
         public int Id { get; set; }
-        public string FIO { get; set; }
-        public string Passport { get; set; }
-        public string More { get; set; }
-        public string Adress { get; set; }
-        public string Number { get; set; }
+        public int Актер { get; set; }
+        public int Фильм { get; set; }
+    
+        public virtual Актеры Актеры { get; set; }
+        public virtual Фильмы Фильмы { get; set; }
     }
 }

@@ -12,10 +12,21 @@ namespace Website
     using System;
     using System.Collections.Generic;
     
-    public partial class Rides
+    public partial class Актеры
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Актеры()
+        {
+            this.Актеры_в_фильме = new HashSet<Актеры_в_фильме>();
+        }
+    
         public int Id { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public string Status { get; set; }
+        public string Фамилия { get; set; }
+        public string Имя { get; set; }
+        public string Страна { get; set; }
+        public int Год { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Актеры_в_фильме> Актеры_в_фильме { get; set; }
     }
 }

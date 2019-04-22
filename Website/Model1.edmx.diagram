@@ -4,21 +4,26 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c88f61909a394246ab37b3c4bbc4a9d6" Name="Diagram1">
-        <EntityTypeShape EntityType="MainModel.Clients" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Contracts" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Defects" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Models" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.ModelTypes" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.News" Width="1.5" PointX="7.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Pocket" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Rides" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Rigths" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="MainModel.Users" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="MainModel.FK_Models_ModelTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="MainModel.FK_Pocket_Models" ManuallyRouted="false" />
-        <AssociationConnector Association="MainModel.FK_Pocket_Users" ManuallyRouted="false" />
+      <Diagram DiagramId="53ff4234e61d497dacb4b4c844f1bd07" Name="Diagram1">
+        <EntityTypeShape EntityType="MainModel.Rigths" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Users" Width="1.5" PointX="10.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Актеры" Width="1.5" PointX="1.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Актеры_в_фильме" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Персонажи" Width="1.5" PointX="1.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Персонажи_в_фильме" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Режиссеры" Width="1.5" PointX="8.375" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Студии" Width="1.5" PointX="5.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MainModel.Фильмы" Width="1.5" PointX="8.375" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="MainModel.FK_Users_Rigths" ManuallyRouted="false" />
+        <AssociationConnector Association="MainModel.FK_Актеры_в_фильме_Актеры" ManuallyRouted="false" />
+        <AssociationConnector Association="MainModel.FK_Актеры_в_фильме_Фильмы" ManuallyRouted="false" />
+        <AssociationConnector Association="MainModel.FK_Персонажи_в_фильме_Персонажи" ManuallyRouted="false" />
+        <AssociationConnector Association="MainModel.FK_Персонажи_в_фильме_Фильмы" ManuallyRouted="false" />
+        <AssociationConnector Association="MainModel.FK_Фильмы_Режиссеры" ManuallyRouted="false" />
+        <AssociationConnector Association="MainModel.FK_Фильмы_Студии" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="MainModel.Pocket" Width="1.5" PointX="10.625" PointY="2.625" />
+        <AssociationConnector Association="MainModel.FK_Pocket_Users" />
+        <AssociationConnector Association="MainModel.FK_Pocket_Фильмы" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

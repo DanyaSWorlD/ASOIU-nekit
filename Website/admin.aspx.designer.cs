@@ -85,6 +85,15 @@ namespace Website {
         protected global::System.Web.UI.WebControls.GridView GridView3;
         
         /// <summary>
+        /// РежиссерыDataSource элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource РежиссерыDataSource;
+        
+        /// <summary>
         /// Button4 элемент управления.
         /// </summary>
         /// <remarks>
@@ -101,5 +110,14 @@ namespace Website {
         /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView GridView4;
+        
+        /// <summary>
+        /// ПерсонажиDataSource элемент управления.
+        /// </summary>
+        /// <remarks>
+        /// Автоматически создаваемое поле.
+        /// Для изменения переместите объявление поля из файла конструктора в файл кода программной части.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ObjectDataSource ПерсонажиDataSource;
     }
 }

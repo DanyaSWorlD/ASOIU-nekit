@@ -25,15 +25,15 @@ namespace Website
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Clients> Clients { get; set; }
-        public virtual DbSet<Contracts> Contracts { get; set; }
-        public virtual DbSet<Defects> Defects { get; set; }
-        public virtual DbSet<Models> Models { get; set; }
-        public virtual DbSet<ModelTypes> ModelTypes { get; set; }
-        public virtual DbSet<News> News { get; set; }
-        public virtual DbSet<Pocket> Pocket { get; set; }
-        public virtual DbSet<Rides> Rides { get; set; }
         public virtual DbSet<Rigths> Rigths { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Актеры> Актеры { get; set; }
+        public virtual DbSet<Актеры_в_фильме> Актеры_в_фильме { get; set; }
+        public virtual DbSet<Персонажи> Персонажи { get; set; }
+        public virtual DbSet<Персонажи_в_фильме> Персонажи_в_фильме { get; set; }
+        public virtual DbSet<Режиссеры> Режиссеры { get; set; }
+        public virtual DbSet<Студии> Студии { get; set; }
+        public virtual DbSet<Фильмы> Фильмы { get; set; }
+        public virtual DbSet<Pocket> Pocket { get; set; }
     }
 }

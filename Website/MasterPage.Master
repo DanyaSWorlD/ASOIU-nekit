@@ -36,7 +36,7 @@
         }
 
         .header {
-            background-color: darkblue;
+            background-color: darkslategray;
             height: 40px !important;
             color: white;
         }
@@ -59,9 +59,9 @@
         <table>
             <tr>
                 <td class="header width100">
-                    <img id="logo" alt="Логотип" src="images/logo.png" /></td>
+                    <img id="logo" alt="Логотип" src="images/logo.jpg" /></td>
                 <td class="header center">
-                    <asp:Label ID="Label1" runat="server" Font-Size="XX-Large" Text="Аренда спецтехники"></asp:Label>
+                    <asp:Label ID="Label1" runat="server" Font-Size="XX-Large" Text="Фильмотека"></asp:Label>
                 </td>
                 <td class="header center" colspan="1"><a id="header" runat="server"></a>
                     <br />

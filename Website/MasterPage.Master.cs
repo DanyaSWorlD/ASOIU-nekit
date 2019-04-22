@@ -25,7 +25,7 @@ namespace Website
                         if (cart.Count > 0)
                         {
                             var count = 0;
-                            foreach (var c in cart) count += c.Count;
+                            foreach (var c in cart) count += c.Количество;
 
                             pocket.InnerHtml = $"В корзине {count} шт";
                             pocket.HRef = "/pocket.aspx";

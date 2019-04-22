@@ -12,18 +12,20 @@ namespace Website
     using System;
     using System.Collections.Generic;
     
-    public partial class ModelTypes
+    public partial class Персонажи
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ModelTypes()
+        public Персонажи()
         {
-            this.Models = new HashSet<Models>();
+            this.Персонажи_в_фильме = new HashSet<Персонажи_в_фильме>();
         }
     
         public int Id { get; set; }
-        public string Type { get; set; }
+        public string Фамилия { get; set; }
+        public string Имя { get; set; }
+        public bool Злодей { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Models> Models { get; set; }
+        public virtual ICollection<Персонажи_в_фильме> Персонажи_в_фильме { get; set; }
     }
 }

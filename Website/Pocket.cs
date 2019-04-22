@@ -15,11 +15,11 @@ namespace Website
     public partial class Pocket
     {
         public int Id { get; set; }
-        public int ModelId { get; set; }
-        public int Count { get; set; }
+        public int Фильм { get; set; }
+        public int Количество { get; set; }
         public int UserId { get; set; }
     
-        public virtual Models Models { get; set; }
         public virtual Users Users { get; set; }
+        public virtual Фильмы Фильмы { get; set; }
     }
 }

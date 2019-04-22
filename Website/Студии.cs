@@ -12,10 +12,21 @@ namespace Website
     using System;
     using System.Collections.Generic;
     
-    public partial class News
+    public partial class Студии
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Студии()
+        {
+            this.Фильмы = new HashSet<Фильмы>();
+        }
+    
         public int Id { get; set; }
-        public string Title { get; set; }
-        public string Text { get; set; }
+        public string Название { get; set; }
+        public string Страна { get; set; }
+        public string Адрес { get; set; }
+        public string Телефон { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Фильмы> Фильмы { get; set; }
     }
 }

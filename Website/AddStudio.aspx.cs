@@ -1,36 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.UI.WebControls;
 
 namespace Website
 {
-    public partial class AddRide : System.Web.UI.Page
+    public partial class AddModel : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if ((Session[MasterPage.User] as Users)?.Rigths != 2) Response.Redirect("login.aspx");
-
-            Date.Value = DateTime.Now.ToString();
-        }
-
-        public List<Rides> GetRides()
-        {
-            using (var context = new MainEntities())
-                return context.Rides.ToList();
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
             using (var context = new MainEntities())
             {
-                var model = new Rides()
+                var студия = new Студии()
                 {
-                    StartTime = DateTime.Parse(Date.Value),
-                    Status = TextBox1.Text
+                    Название = TextBox1.Text,
+                    Адрес = TextBox2.Text,
+                    Страна = TextBox3.Text,
+                    Телефон = TextBox4.Text
                 };
 
-                context.Rides.Add(model);
+                context.Студии.Add(студия);
                 context.SaveChanges();
             }
 

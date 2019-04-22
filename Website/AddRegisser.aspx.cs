@@ -2,26 +2,26 @@
 
 namespace Website
 {
-    public partial class AddDefect : System.Web.UI.Page
+    public partial class AddRide : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if ((Session[MasterPage.User] as Users)?.Rigths != 2) Response.Redirect("login.aspx");
         }
 
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             using (var context = new MainEntities())
             {
-                var defect = new Defects
+                var режиссер = new Режиссеры()
                 {
-                    Part = TextBox1.Text,
-                    Value = TextBox2.Text,
-                    Comment = TextBox3.Text
+                    Фамилия = TextBox1.Text,
+                    Имя = TextBox2.Text,
+                    Страна = TextBox3.Text,
+                    Информация = TextBox4.Text
                 };
 
-                context.Defects.Add(defect);
+                context.Режиссеры.Add(режиссер);
                 context.SaveChanges();
             }
 
