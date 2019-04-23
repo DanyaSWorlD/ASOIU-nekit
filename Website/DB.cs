@@ -47,6 +47,7 @@ namespace Website
         public static void УдалитьФильм(Фильмы ф)
         {
             if (ф == null) return;
+            if (ф.Название == null) return;
             using (var context = new MainEntities())
                 context.Фильмы.Remove(ф);
         }

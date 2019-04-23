@@ -58,6 +58,12 @@ namespace Website
                 return context.Персонажи.ToList();
         }
 
+        public List<Фильмы> Фильмы()
+        {
+            using (var context = new MainEntities())
+                return context.Фильмы.ToList();
+        }
+
         public void ОбновитьАктера(Актеры а)
         {
             if (а == null) return;
@@ -102,6 +108,17 @@ namespace Website
             }
         }
 
+        public void ОбновитьФильм(Фильмы ф)
+        {
+            if (ф == null) return;
+            using (var context = new MainEntities())
+            {
+                var defects = context.Фильмы.First(o => o.Id.Equals(ф.Id));
+                context.Entry(defects).CurrentValues.SetValues(ф);
+                context.SaveChanges();
+            }
+        }
+
         public void УдалитьАктера(Актеры m)
         {
             using (var context = new MainEntities())
@@ -124,6 +141,12 @@ namespace Website
         {
             using (var context = new MainEntities())
                 context.Персонажи.Remove(d);
+        }
+
+        public void УдалитьФильм(Фильмы ф)
+        {
+            using (var context = new MainEntities())
+                context.Фильмы.Remove(ф);
         }
 
         #endregion
@@ -149,13 +172,17 @@ namespace Website
                 var r = new Актеры()
                 {
                     Id = id,
+                    Год = int.Parse((string)e.NewValues["Год"]),
+                    Имя = (string)e.NewValues["Имя"],
+                    Фамилия = (string)e.NewValues["Фамилия"],
+                    Страна = (string)e.NewValues["Страна"]
                 };
 
                 ОбновитьАктера(r);
             }
             catch (Exception) { return; }
 
-            GridView2.EditIndex = -1;
+            GridView1.EditIndex = -1;
             SetDataModel(GridView1, Режиссеры());
         }
 
@@ -171,6 +198,10 @@ namespace Website
                 var r = new Режиссеры()
                 {
                     Id = id,
+                    Имя = (string)e.NewValues["Имя"],
+                    Страна = (string)e.NewValues["Страна"],
+                    Фамилия = (string)e.NewValues["Фамилия"],
+                    Информация = (string)e.NewValues["Информация"]
                 };
 
                 ОбновитьРежиссера(r);
@@ -192,14 +223,18 @@ namespace Website
 
                 var r = new Студии()
                 {
-                    Id = id
+                    Id = id,
+                    Страна = (string)e.NewValues["Страна"],
+                    Адрес = (string)e.NewValues["Адрес"],
+                    Название = (string)e.NewValues["Название"],
+                    Телефон = (string)e.NewValues["Телефон"]
                 };
 
                 ОбновитьСтудию(r);
             }
             catch (Exception) { return; }
 
-            GridView2.EditIndex = -1;
+            GridView3.EditIndex = -1;
             SetDataModel(GridView2, Студии());
         }
 
@@ -214,15 +249,47 @@ namespace Website
 
                 var r = new Персонажи()
                 {
-                    Id = id
+                    Id = id,
+                    Имя = (string)e.NewValues["Имя"],
+                    Фамилия = (string)e.NewValues["Фамилия"],
+                    Злодей = (bool)e.NewValues["Злодей"]
                 };
 
                 ОбновитьПерсонажа(r);
             }
             catch (Exception) { return; }
 
-            GridView2.EditIndex = -1;
+            GridView4.EditIndex = -1;
             SetDataModel(GridView2, Персонажи());
+        }
+
+        protected void GridView5_RowUpdating(object sender, GridViewUpdateEventArgs e)
+        {
+            try
+            {
+                var id = -1;
+
+                using (var context = new MainEntities())
+                    id = context.Фильмы.ToArray()[GridView5.EditIndex].Id;
+
+                var r = new Фильмы()
+                {
+                    Id = id,
+                    Название = (string)e.NewValues["Название"],
+                    Страна = (string)e.NewValues["Страна"],
+                    Дата_выхода = DateTime.Parse((string)e.NewValues["Дата_выхода"]),
+                    Количество_серий = int.Parse((string)e.NewValues["Количество_серий"]),
+                    Режиссер = int.Parse((string)e.NewValues["Режиссер"]),
+                    Студия = int.Parse((string)e.NewValues["Студия"]),
+                    Сюжет = (string)e.NewValues["Сюжет"]
+                };
+
+                ОбновитьФильм(r);
+            }
+            catch (Exception) { return; }
+
+            GridView5.EditIndex = -1;
+            SetDataModel(GridView5, Фильмы());
         }
 
         #endregion
@@ -253,6 +320,12 @@ namespace Website
             SetDataModel(GridView4, Персонажи());
         }
 
+        protected void GridView5_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
+        {
+            GridView5.EditIndex = -1;
+            SetDataModel(GridView5, Персонажи());
+        }
+
         #endregion
 
         #region Editing
@@ -281,6 +354,12 @@ namespace Website
             SetDataModel(GridView4, Персонажи());
         }
 
+        protected void GridView5_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView5.EditIndex = e.NewEditIndex;
+            SetDataModel(GridView5, Фильмы());
+        }
+
         #endregion
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -306,6 +385,61 @@ namespace Website
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             Response.Redirect("AddFilm.aspx");
+        }
+
+        protected void GridView5_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            using (var context = new MainEntities())
+            {
+                var model = context.Фильмы.ToList()[e.RowIndex];
+                context.Фильмы.Remove(model);
+                context.SaveChanges();
+            }
+            GridView5.DataBind();
+        }
+
+        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            using (var context = new MainEntities())
+            {
+                var model = context.Актеры.ToList()[e.RowIndex];
+                context.Актеры.Remove(model);
+                context.SaveChanges();
+            }
+            GridView1.DataBind();
+        }
+
+        protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            using (var context = new MainEntities())
+            {
+                var model = context.Студии.ToList()[e.RowIndex];
+                context.Студии.Remove(model);
+                context.SaveChanges();
+            }
+            GridView2.DataBind();
+        }
+
+        protected void GridView3_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            using (var context = new MainEntities())
+            {
+                var model = context.Режиссеры.ToList()[e.RowIndex];
+                context.Режиссеры.Remove(model);
+                context.SaveChanges();
+            }
+            GridView3.DataBind();
+        }
+
+        protected void GridView4_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            using (var context = new MainEntities())
+            {
+                var model = context.Персонажи.ToList()[e.RowIndex];
+                context.Персонажи.Remove(model);
+                context.SaveChanges();
+            }
+            GridView4.DataBind();
         }
     }
 }

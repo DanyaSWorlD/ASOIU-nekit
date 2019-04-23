@@ -11,70 +11,45 @@ namespace Website
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //var typeFilter = (string)Session["typeFilter"];
-            //var manFilter = (string)Session["manFilter"];
-            //var modelFilter = (string)Session["modelFilter"];
-            //var costFromFilter = (string)Session["costFromFilter"];
-            //var costToFilter = (string)Session["costToFilter"];
-            //var list = new List<ModelTypes>();
-            //if (DropDownList1.Items.Count == 0)
-            //    DropDownList1.Items.Add(new ListItem(""));
 
-            //using (var context = new MainEntities())
-            //    list = context.ModelTypes.ToList();
+            if (IsPostBack) return;
 
-            //if (DropDownList1.Items.Count == 1)
-            //    DropDownList1.Items.AddRange(list.Select(o => new ListItem(o.Type)).ToArray());
+            DropDownList1.DataSourceID = "";
+            DropDownList2.DataSourceID = "";
+
+            using (var context = new MainEntities())
+            {
+                DropDownList1.Items.Add("");
+                var items1 = context.Режиссеры.ToList();
+                DropDownList1.Items.AddRange(items1.Select(o => new ListItem(o.Имя + " " + o.Фамилия)).ToArray());
+
+                DropDownList2.Items.Add("");
+                var items2 = context.Студии.ToList();
+                DropDownList2.Items.AddRange(items2.Select(o => new ListItem(o.Название)).ToArray());
+            }
+
+            DropDownList1.DataBind();
+            DropDownList2.DataBind();
 
             UpdData();
 
-            //if (Session[MasterPage.User] != null)
-            //{
-            //    var user = (Users)Session[MasterPage.User];
-            //    if (user.Rigths == 1)
-            //    {
-            //        GridView1.Columns[0].Visible = true;
-            //        return;
-            //    }
-            //}
+            if (Session[MasterPage.User] != null)
+            {
+                var user = (Users)Session[MasterPage.User];
+                if (user.Rigths == 1)
+                {
+                    GridView1.Columns[0].Visible = true;
+                    return;
+                }
+            }
 
-            //GridView1.Columns[0].Visible = false;
-        }
-
-        protected void DropDownList1_TextChanged(object sender, EventArgs e)
-        {
-            Session["typeFilter"] = DropDownList1.Text;
-            UpdData();
-        }
-
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            Session["manFilter"] = TextBox1.Text;
-            UpdData();
-        }
-
-        protected void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-            Session["modelFilter"] = TextBox2.Text;
-            UpdData();
-        }
-
-        protected void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-            Session["costFromFilter"] = TextBox3.Text;
-            UpdData();
-        }
-
-        protected void TextBox4_TextChanged(object sender, EventArgs e)
-        {
-            Session["costToFilter"] = TextBox4.Text;
-            UpdData();
+            GridView1.Columns[0].Visible = false;
         }
 
         protected void UpdData()
         {
             GridView1.DataSourceID = "";
-            GridView1.DataSource = Фильмы();
+            GridView1.DataSource = GetData();
             GridView1.DataBind();
         }
 
@@ -93,29 +68,36 @@ namespace Website
 
         protected object GetData()
         {
-            var typeFilter = (string)Session["typeFilter"];
-            var manFilter = (string)Session["manFilter"];
-            var modelFilter = (string)Session["modelFilter"];
-            var costFromFilter = (string)Session["costFromFilter"];
-            var costToFilter = (string)Session["costToFilter"];
+            var regisser = (string)Session["regFilter"];
+            var studio = (string)Session["studioFilter"];
+            var name = (string)Session["nameFilter"];
+            var country = (string)Session["countryFilter"];
+            var seriesFrom = (string)Session["seriesFromFilter"];
+            var seriesTo = (string)Session["seriesToFilter"];
 
             object data = null;
 
-            var fromB = int.TryParse(costFromFilter, out var @from);
-            var toB = int.TryParse(costToFilter, out var to);
+            var fromB = int.TryParse(seriesFrom, out var @from);
+            var toB = int.TryParse(seriesTo, out var to);
 
-            //using (var context = new MainEntities())
-            //{
-            //    data = context.Models
-            //        .Where(o =>
-            //        (string.IsNullOrEmpty(typeFilter) || o.ModelTypes.Type.Equals(typeFilter))
-            //        && (string.IsNullOrEmpty(manFilter) || o.Manufacturer.Contains(manFilter))
-            //        && (string.IsNullOrEmpty(modelFilter) || o.Model.Contains(modelFilter))
-            //        && (!fromB || o.Price > @from)
-            //        && (!toB || o.Price < to))
-            //        .Include(o => o.ModelTypes)
-            //        .ToList();
-            //}
+            using (var context = new MainEntities())
+            {
+                var films = context.Фильмы
+                    .Include(o => o.Режиссеры)
+                    .Include(o => o.Студии)
+                    .ToList();
+
+                data = films
+                    .Where(o =>
+                    (string.IsNullOrEmpty(regisser) || ($"{o.Режиссеры.Имя} {o.Режиссеры.Фамилия}").Contains(regisser))
+                    && (string.IsNullOrEmpty(studio) || o.Студии.Название.Contains(studio))
+                    && (string.IsNullOrEmpty(name) || o.Название.Contains(name))
+                    && (string.IsNullOrEmpty(country) || o.Страна.Contains(country))
+                    && (!fromB || o.Количество_серий > @from)
+                    && (!toB || o.Количество_серий < to))
+                    .Select(o => new Фильм(o))
+                    .ToList();
+            }
 
             return data;
         }
@@ -124,46 +106,45 @@ namespace Website
         {
             if (e.CommandName == "add")
             {
-                //var id = int.Parse((string)e.CommandArgument);
+                var id = int.Parse((string)e.CommandArgument);
 
-                //using (var context = new MainEntities())
-                //{
-                //    var model = context.Models.ToArray()[id];
+                using (var context = new MainEntities())
+                {
+                    var фильмы = context.Фильмы.ToArray()[id];
 
-                //    var user = (Users)Session[MasterPage.User];
+                    var user = (Users)Session[MasterPage.User];
 
-                //    var myPocket = context.Pocket.Where(o => o.UserId == user.Id).ToList();
+                    var myPocket = context.Pocket.Where(o => o.UserId == user.Id).ToList();
 
-                //    //var add = false;
+                    if (myPocket.Count(o => o.Фильм.Equals(фильмы.Id)) > 0)
+                    {
+                        context.Pocket.First(o => o.Фильм.Equals(фильмы.Id)).Количество++;
+                        context.SaveChanges();
+                    }
+                    else
+                    {
+                        context.Pocket.Add(new Pocket
+                        {
+                            Количество = 1,
+                            Фильм = фильмы.Id,
+                            UserId = ((Users)Session[MasterPage.User]).Id
+                        });
+                    }
 
-                //    if (myPocket.Count(o => o.ModelId.Equals(model.Id)) > 0)
-                //    {
-                //        context.Pocket.First(o => o.ModelId.Equals(model.Id)).Count++;
-                //        context.SaveChanges();
-                //    }
-                //    else
-                //    {
-                //        context.Pocket.Add(new Pocket
-                //        {
-                //            Count = 1,
-                //            ModelId = model.Id,
-                //            UserId = ((Users)Session[MasterPage.User]).Id
-                //        });
-                //    }
-
-                //    context.SaveChanges();
-                //    Response.Redirect("/default.aspx");
-                //}
+                    context.SaveChanges();
+                    Response.Redirect("/default.aspx");
+                }
             }
         }
 
         protected void Unnamed1_Click(object sender, EventArgs e)
         {
             DropDownList1.SelectedIndex = 0;
-            TextBox1.Text = "";
+            DropDownList2.SelectedIndex = 0;
             TextBox2.Text = "";
             TextBox3.Text = "";
             TextBox4.Text = "";
+            TextBox5.Text = "";
 
             Session["typeFilter"] = null;
             Session["manFilter"] = null;
@@ -197,6 +178,42 @@ namespace Website
             {
                 _фильм = фильм;
             }
+        }
+
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["regFilter"] = DropDownList1.SelectedValue;
+            UpdData();
+        }
+
+        protected void DropDownList2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Session["studioFilter"] = DropDownList2.SelectedValue;
+            UpdData();
+        }
+
+        protected void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+            Session["nameFilter"] = TextBox2.Text;
+            UpdData();
+        }
+
+        protected void TextBox3_TextChanged(object sender, EventArgs e)
+        {
+            Session["countryFilter"] = TextBox3.Text;
+            UpdData();
+        }
+
+        protected void TextBox4_TextChanged(object sender, EventArgs e)
+        {
+            Session["seriesFromFilter"] = TextBox4.Text;
+            UpdData();
+        }
+
+        protected void TextBox5_TextChanged(object sender, EventArgs e)
+        {
+            Session["seriesToFilter"] = TextBox5.Text;
+            UpdData();
         }
     }
 }

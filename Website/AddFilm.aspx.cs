@@ -38,7 +38,7 @@ namespace Website
                     Страна = TextBox4.Text,
                     Количество_серий = int.Parse(TextBox5.Text),
                     Режиссер = context.Режиссеры.ToList()[DropDownList1.SelectedIndex].Id,
-                    Студия = context.Режиссеры.ToList()[DropDownList2.SelectedIndex].Id
+                    Студия = context.Студии.ToList()[DropDownList2.SelectedIndex].Id
                 };
 
                 var filmId = context.Фильмы.Add(f);
@@ -69,6 +69,8 @@ namespace Website
                 }
 
                 context.SaveChanges();
+
+                Response.Redirect("admin.aspx");
             }
         }
     }

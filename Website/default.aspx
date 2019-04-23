@@ -24,23 +24,24 @@
             </tr>
             <tr>
                 <td>
-                    <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnTextChanged="DropDownList1_TextChanged">
+                    <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
                     </asp:DropDownList>
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBox1" runat="server" AutoPostBack="True" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                    <asp:DropDownList ID="DropDownList2" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList2_SelectedIndexChanged">
+                    </asp:DropDownList>
                 </td>
                 <td>
                     <asp:TextBox ID="TextBox2" runat="server" AutoPostBack="True" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>
+                    <asp:TextBox ID="TextBox3" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox></td>
                 <td>
                     <div>
                         от
-                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>
                         до
-                        <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" OnTextChanged="TextBox5_TextChanged"></asp:TextBox>
                     </div>
                 </td>
             </tr>
@@ -53,6 +54,7 @@
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <AlternatingRowStyle BackColor="White" />
         <Columns>
+            <asp:ButtonField CommandName="add" Text="Добавить в корзину" />
             <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" ReadOnly="True"></asp:BoundField>
             <asp:BoundField DataField="Название" HeaderText="Название" SortExpression="Название" ReadOnly="True" />
             <asp:BoundField DataField="Страна" HeaderText="Страна" SortExpression="Страна" ReadOnly="True" />
