@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.UI.WebControls;
 
@@ -25,7 +26,7 @@ namespace Website
             //if (DropDownList1.Items.Count == 1)
             //    DropDownList1.Items.AddRange(list.Select(o => new ListItem(o.Type)).ToArray());
 
-            //UpdData();
+            UpdData();
 
             //if (Session[MasterPage.User] != null)
             //{
@@ -73,14 +74,21 @@ namespace Website
         protected void UpdData()
         {
             GridView1.DataSourceID = "";
-            GridView1.DataSource = GetData();
+            GridView1.DataSource = Фильмы();
             GridView1.DataBind();
         }
 
-        public List<Фильмы> Фильмы()
+        public List<Фильм> Фильмы()
         {
             using (var context = new MainEntities())
-                return context.Фильмы.ToList();
+            {
+                var films = context.Фильмы
+                    .Include(o => o.Режиссеры)
+                    .Include(o => o.Студии)
+                    .ToList();
+
+                return films.Select(o => new Фильм(o)).ToList();
+            }
         }
 
         protected object GetData()
@@ -163,6 +171,32 @@ namespace Website
             Session["costFromFilter"] = null;
             Session["costToFilter"] = null;
             Response.Redirect("/default.aspx");
+        }
+
+        public class Фильм
+        {
+            private Фильмы _фильм;
+
+            public int Id => _фильм.Id;
+
+            public string Название => _фильм.Название;
+
+            public string Страна => _фильм.Страна;
+
+            public string Сюжет => _фильм.Сюжет;
+
+            public System.DateTime Дата_выхода => _фильм.Дата_выхода;
+
+            public int Количество_серий => _фильм.Количество_серий;
+
+            public string Режиссер => _фильм.Режиссеры.Имя + " " + _фильм.Режиссеры.Фамилия;
+
+            public string Студия => _фильм.Студии.Название;
+
+            public Фильм(Фильмы фильм)
+            {
+                _фильм = фильм;
+            }
         }
     }
 }

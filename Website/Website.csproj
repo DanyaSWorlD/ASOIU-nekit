@@ -72,6 +72,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddFilm.aspx" />
     <Content Include="AddHero.aspx" />
     <Content Include="AddActor.aspx" />
     <Content Include="AddStudio.aspx" />
@@ -98,6 +99,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFilm.aspx.cs">
+      <DependentUpon>AddFilm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddFilm.aspx.designer.cs">
+      <DependentUpon>AddFilm.aspx</DependentUpon>
+    </Compile>
     <Compile Include="AddHero.aspx.cs">
       <DependentUpon>AddHero.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -133,6 +141,7 @@
     <Compile Include="admin.aspx.designer.cs">
       <DependentUpon>admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="DB.cs" />
     <Compile Include="default.aspx.cs">
       <DependentUpon>default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

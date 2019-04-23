@@ -16,10 +16,11 @@
     <div>
         <table class="style1">
             <tr>
-                <th class="auto-style1">Фильтр по типу</th>
-                <th class="auto-style1">Фильтр по производителю</th>
-                <th class="auto-style1">Фильтр по модели</th>
-                <th class="auto-style1">Фильтр по цене</th>
+                <th class="auto-style1">Фильтр по режиссеру</th>
+                <th class="auto-style1">Фильтр по студии</th>
+                <th class="auto-style1">Фильтр по названию</th>
+                <th class="auto-style1">Фильтр по стране</th>
+                <th class="auto-style1">Фильтр по количеству серий</th>
             </tr>
             <tr>
                 <td>
@@ -33,31 +34,33 @@
                     <asp:TextBox ID="TextBox2" runat="server" AutoPostBack="True" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
                 </td>
                 <td>
+                    <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox></td>
+                <td>
                     <div>
                         от
-                        <asp:TextBox ID="TextBox3" runat="server" AutoPostBack="True" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
                         до
-                        <asp:TextBox ID="TextBox4" runat="server" AutoPostBack="True" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>
+                        <asp:TextBox ID="TextBox5" runat="server" AutoPostBack="True" OnTextChanged="TextBox4_TextChanged"></asp:TextBox>
                     </div>
                 </td>
             </tr>
         </table>
     </div>
-    <asp:Button runat="server" Text="Сброс фильтров" OnClick="Unnamed1_Click"/>
+    <asp:Button runat="server" Text="Сброс фильтров" OnClick="Unnamed1_Click" />
     <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="MainSource" CellPadding="4" ForeColor="#333333" GridLines="None" AllowPaging="True" OnRowCommand="GridView1_RowCommand">
         <EditRowStyle BackColor="#2461BF" />
         <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
         <AlternatingRowStyle BackColor="White" />
         <Columns>
-            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False"></asp:BoundField>
-            <asp:BoundField DataField="Название" HeaderText="Название" SortExpression="Название" />
-            <asp:BoundField DataField="Сюжет" HeaderText="Сюжет" SortExpression="Сюжет" />
-            <asp:BoundField DataField="Дата_выхода" HeaderText="Дата_выхода" SortExpression="Дата_выхода" />
-            <asp:BoundField DataField="Страна" HeaderText="Страна" SortExpression="Страна" />
-            <asp:BoundField DataField="Количество_серий" HeaderText="Количество_серий" SortExpression="Количество_серий" />
-            <asp:BoundField DataField="Режиссер" HeaderText="Режиссер" SortExpression="Режиссер" />
-            <asp:BoundField DataField="Студия" HeaderText="Студия" SortExpression="Студия" />
+            <asp:BoundField DataField="Id" HeaderText="Id" SortExpression="Id" Visible="False" ReadOnly="True"></asp:BoundField>
+            <asp:BoundField DataField="Название" HeaderText="Название" SortExpression="Название" ReadOnly="True" />
+            <asp:BoundField DataField="Страна" HeaderText="Страна" SortExpression="Страна" ReadOnly="True" />
+            <asp:BoundField DataField="Сюжет" HeaderText="Сюжет" SortExpression="Сюжет" ReadOnly="True" />
+            <asp:BoundField DataField="Дата_выхода" HeaderText="Дата_выхода" SortExpression="Дата_выхода" ReadOnly="True" />
+            <asp:BoundField DataField="Количество_серий" HeaderText="Количество_серий" SortExpression="Количество_серий" ReadOnly="True" />
+            <asp:BoundField DataField="Режиссер" HeaderText="Режиссер" SortExpression="Режиссер" ReadOnly="True" />
+            <asp:BoundField DataField="Студия" HeaderText="Студия" SortExpression="Студия" ReadOnly="True" />
         </Columns>
         <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
         <RowStyle BackColor="#EFF3FB" CssClass="style1" />

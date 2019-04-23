@@ -36,7 +36,7 @@
         }
 
         .header {
-            background-color: darkslategray;
+            background-color: #7e7c9e;
             height: 40px !important;
             color: white;
         }
