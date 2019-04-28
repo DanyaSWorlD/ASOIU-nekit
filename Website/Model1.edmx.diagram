@@ -24,6 +24,7 @@
         <EntityTypeShape EntityType="MainModel.Pocket" Width="1.5" PointX="10.625" PointY="2.625" />
         <AssociationConnector Association="MainModel.FK_Pocket_Users" />
         <AssociationConnector Association="MainModel.FK_Pocket_Фильмы" />
+        <EntityTypeShape EntityType="MainModel.News" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

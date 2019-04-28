@@ -2,16 +2,17 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        .div-content div {
-            box-shadow: 0 0 4px 1px #0009;
-            background: #dedede;
-            border-radius: 3px;
-        }
+            .div-content div {
+                background: #dedede;
+                border-radius: 3px;
+                border: 1px solid #7e7c9e;
+                margin-bottom: 45px;
+            }
 
             .div-content div h1 {
                 padding: 5px;
-                color: blue;
-                background: #b9b9b9;
+                color: #7e7c9e;
+                background: #fff;
             }
 
             .div-content div p {

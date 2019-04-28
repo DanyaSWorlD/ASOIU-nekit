@@ -17,6 +17,12 @@ namespace Website
             DropDownList1.DataSourceID = "";
             DropDownList2.DataSourceID = "";
 
+            GridView2.DataSourceID = "";
+            GridView3.DataSourceID = "";
+
+            GridView2.DataBind();
+            GridView3.DataBind();
+
             using (var context = new MainEntities())
             {
                 DropDownList1.Items.Add("");
@@ -64,6 +70,18 @@ namespace Website
 
                 return films.Select(o => new Фильм(o)).ToList();
             }
+        }
+
+        public List<Актеры> Актеры()
+        {
+            using (var context = new MainEntities())
+                return context.Актеры.ToList();
+        }
+
+        public List<Персонажи> Персонажи()
+        {
+            using (var context = new MainEntities())
+                return context.Персонажи.ToList();
         }
 
         protected object GetData()
@@ -214,6 +232,35 @@ namespace Website
         {
             Session["seriesToFilter"] = TextBox5.Text;
             UpdData();
+        }
+
+        protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            using (var context = new MainEntities())
+            {
+                var id = context.Фильмы.ToArray()[GridView1.SelectedIndex].Id;
+
+                GridView2.DataSourceID = "";
+                GridView3.DataSourceID = "";
+
+                var ActorIds = context.Актеры_в_фильме.Where(o => o.Фильм == id).ToList();
+                var PersIds = context.Персонажи_в_фильме.Where(o => o.Фильм == id).ToList();
+
+                var actors = new List<Актеры>();
+                var pers = new List<Персонажи>();
+
+                foreach (var actor in ActorIds)
+                    actors.Add(context.Актеры.First(o => o.Id == actor.Актер));
+
+                foreach (var persngs in PersIds)
+                    pers.Add(context.Персонажи.First(o => o.Id == persngs.Персонаж));
+
+                GridView2.DataSource = actors;
+                GridView3.DataSource = pers;
+
+                GridView2.DataBind();
+                GridView3.DataBind();
+            }
         }
     }
 }

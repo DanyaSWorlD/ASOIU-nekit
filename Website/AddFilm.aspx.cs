@@ -10,6 +10,8 @@ namespace Website
         {
             if ((Session[MasterPage.User] as Users)?.Rigths != 2) Response.Redirect("login.aspx");
 
+            if (IsPostBack) return;
+
             using (var context = new MainEntities())
             {
                 CheckBoxList1.DataSourceID = "";
@@ -59,7 +61,7 @@ namespace Website
                 var itemsPers = CheckBoxList2.Items.Cast<ListItem>().ToList();
                 foreach (var a in itemsPers.Where(sItem => sItem.Selected))
                 {
-                    var indexOfA = items.IndexOf(a);
+                    var indexOfA = itemsPers.IndexOf(a);
                     var ai = new Персонажи_в_фильме
                     {
                         Фильм = filmId.Id,

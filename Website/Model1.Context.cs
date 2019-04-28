@@ -35,5 +35,6 @@ namespace Website
         public virtual DbSet<Студии> Студии { get; set; }
         public virtual DbSet<Фильмы> Фильмы { get; set; }
         public virtual DbSet<Pocket> Pocket { get; set; }
+        public virtual DbSet<News> News { get; set; }
     }
 }
