@@ -79,6 +79,7 @@
     <Content Include="AddRegisser.aspx" />
     <Content Include="admin.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="images\back.jpg" />
     <Content Include="images\logo.jpg" />
     <Content Include="images\logo.png" />
     <Content Include="lk.aspx" />

@@ -9,6 +9,10 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <style type="text/css">
+        body {
+            background: url(images/back.jpg);        
+        }
+
         table {
             width: 100%;
             border: none;
@@ -37,7 +41,7 @@
 
         .header {
             background-color: #7e7c9e;
-            height: 40px !important;
+            height: 100px !important;
             color: white;
         }
 
@@ -46,20 +50,39 @@
         }
 
         .width100 {
-            width: 150px;
+            width: 250px;
         }
 
         .auto-style1 {
             vertical-align: top;
         }
+
+        .auto-style2 {
+            width: 194px;
+            border: none !important;
+        }
+
+        .masterTable > tbody > tr > th {
+            border: 2px solid purple;
+            margin: 0;
+        }        
+        
+        .masterTable > tbody > tr > td {
+            border: 2px solid purple;
+            margin: 0;
+        }
+        
+        .masterTable {
+            border: 2px solid purple;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
-        <table>
+        <table class="masterTable">
             <tr>
                 <td class="header width100">
-                    <img id="logo" alt="Логотип" src="images/logo.jpg" /></td>
+                    <img id="logo" alt="Логотип" src="images/logo.jpg" style="width: 100px; height: 100px"/></td>
                 <td class="header center">
                     <asp:Label ID="Label1" runat="server" Font-Size="XX-Large" Text="Фильмотека"></asp:Label>
                 </td>
@@ -71,18 +94,18 @@
                 <td class="auto-style1">
                     <table style="vertical-align: top; width: 200px; vertical-align: top;">
                         <tr>
-                            <td><a href="/">Главная</a></td>
+                            <td class="auto-style2"><a href="/">Главная</a></td>
                         </tr>
                         <tr>
-                            <td><a href="/news.aspx">Новости</a></td>
+                            <td class="auto-style2"><a href="/news.aspx">Новости</a></td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="auto-style2">
                                 <asp:LinkButton ID="Link1" runat="server" Text="Личный кабинет" OnClick="Link1_Click" Visible="False"></asp:LinkButton>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td class="auto-style2">
                                 <asp:LinkButton ID="Link2" runat="server" Text="Администрирование" OnClick="Link2_Click" Visible="False"></asp:LinkButton>
                             </td>
                         </tr>

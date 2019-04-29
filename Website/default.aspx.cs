@@ -111,8 +111,8 @@ namespace Website
                     && (string.IsNullOrEmpty(studio) || o.Студии.Название.Contains(studio))
                     && (string.IsNullOrEmpty(name) || o.Название.Contains(name))
                     && (string.IsNullOrEmpty(country) || o.Страна.Contains(country))
-                    && (!fromB || o.Количество_серий > @from)
-                    && (!toB || o.Количество_серий < to))
+                    && (!fromB || o.Количество_серий >= @from)
+                    && (!toB || o.Количество_серий <= to))
                     .Select(o => new Фильм(o))
                     .ToList();
             }
@@ -164,11 +164,13 @@ namespace Website
             TextBox4.Text = "";
             TextBox5.Text = "";
 
-            Session["typeFilter"] = null;
-            Session["manFilter"] = null;
-            Session["modelFilter"] = null;
-            Session["costFromFilter"] = null;
-            Session["costToFilter"] = null;
+            Session["regFilter"] = null;
+            Session["studioFilter"] = null;
+            Session["nameFilter"] = null;
+            Session["countryFilter"] = null;
+            Session["seriesFromFilter"] = null;
+            Session["seriesToFilter"] = null;
+
             Response.Redirect("/default.aspx");
         }
 
